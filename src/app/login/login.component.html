@@ -1,0 +1,57 @@
+
+<div class="container mt-2">
+    <div class="row animated slideInLeft">
+      <div class="col">
+        <p class="h3">
+            <i class="fa fa-sign-in-alt"></i> Login Page</p>
+        <p>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta culpa placeat corrupti, vitae asperiores cumque vel alias veniam facilis ex. adipisicing elit. Delectus enim excepturi harum molestiae nesciunt qui quibusdam quis reiciendis saepe voluptas.</p>
+      </div>
+    </div>
+    <div class="row  animated zoomIn delay-1s">
+      <div class="col-sm-3 m-auto">
+        <!-- alert msg for emty form -->
+        <div *ngIf="isEmpty" class="alert alert-danger animated zoomIn">
+          <button class="close" data-dismiss="alert"><i class="fa fa-times-circle"></i></button>
+          <small class="font-weight-bold">Please fill the  form</small>
+        </div> 
+        <div *ngIf="errMsg" class="alert alert-danger animated zoomIn">
+            <button class="close" data-dismiss="alert"><i class="fa fa-times-circle"></i></button>
+            <small class="font-weight-bold">{{errMsg}}</small>
+          </div> 
+
+        <div class="card"  >
+          <div class="card-header text-center bg-info text-white font-weight-bold">Register Form</div>
+          <div class="card-body">
+            <form [formGroup]="loginForm" (submit)="login()"> 
+              <div class="form-group">
+                <input formControlName="email" type="email" class="form-control" placeholder="Email"
+                [class.is-invalid] ='getemail().touched && getemail().invalid'
+                [class.is-valid]="getemail().touched && getemail().valid "
+                >
+                <div *ngIf='getemail().touched && getemail().invalid' class="text-danger">
+                  <span *ngIf='getemail().errors.required'>email is required</span>
+                </div>
+                <span *ngIf="getemail().touched && getemail().valid" class="text-success">Looks good</span>
+              </div>
+              <div class="form-group">
+                <input formControlName="password" type="password" class="form-control" placeholder="password"
+                [class.is-valid]="getpassword().touched && getpassword().valid"
+                [class.is-invalid]="getpassword().touched && getpassword().invalid">
+
+              <div *ngIf='getpassword().touched && getpassword().invalid' class="text-danger">
+                <span *ngIf='getpassword().errors.required'>Password is required</span>
+                <span *ngIf='getpassword().errors.minlength'>Maximum characters required</span>
+              </div>
+              <span *ngIf="getpassword().touched && getpassword().valid" class="text-success">Looks good</span>
+              </div>
+              <div>
+                <input type="submit" class="btn btn-sm btn-danger" value="Submit">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-bottom: 300px;"></div>
+  

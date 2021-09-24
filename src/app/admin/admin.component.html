@@ -1,0 +1,39 @@
+<div class="container mt-3">
+  <div class="row" *ngIf="!isType()">
+    <div class="col">
+      <p class="h3 text-success">Admin page</p>
+      <p class="text-danger">you are  not A Authorized Person, if you want access this page please contact Admin  </p>
+    </div>
+  </div>
+    <div class="row mt-3" *ngIf="users && isType()">
+      <div class="col">
+        <p class="h3">Admin page</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere dolore debitis praesentium ut! Tempora consectetur veniam ipsum iste ipsam cupiditate debitis impedit vitae accusamus eveniet, sint ut fugiat voluptatem ratione!</p>
+        <table class="table table-hover text-center table-striped">
+          <thead class="bg-dark text-white">
+            <tr>
+              <th>SNO</th>
+              <th> First Name</th>
+              <th>Last name</th>
+              <th>Email</th>
+              <th>Type</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody >
+              <tr *ngFor="let user of users">
+                <td>{{user._id}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.type}}</td>
+                <td>
+                  <button (click)="delete(user._id)" class="btn btn-danger btn-sm">delete</button>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

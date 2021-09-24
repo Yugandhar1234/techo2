@@ -1,0 +1,113 @@
+<div class="container">
+    <div class="row animated slideInLeft">
+      <div class="col">
+        <p class="h3">
+            <i class="fas fa-users"></i> Regester Page</p>
+        <p>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta culpa placeat corrupti, vitae asperiores cumque vel alias veniam facilis ex. adipisicing elit. Delectus enim excepturi harum molestiae nesciunt qui quibusdam quis reiciendis saepe voluptas.</p>
+      </div>
+    </div>
+    <div class="row  animated zoomIn delay-1s">
+      <div class="col-sm-4 m-auto">
+        <!-- alert msg for emty form -->
+        <div *ngIf="isEmpty" class="alert alert-danger animated zoomIn">
+          <button class="close" data-dismiss="alert"><i class="fa fa-times-circle"></i></button>
+          <small class="font-weight-bold">Please fill the  form</small>
+        </div> 
+        <div *ngIf="errMsg" class="alert alert-danger animated zoomIn">
+            <button class="close" data-dismiss="alert"><i class="fa fa-times-circle"></i></button>
+            <small class="font-weight-bold">{{errMsg}}</small>
+          </div> 
+
+        <div class="card"  >
+            <div class="card-header text-center bg-info text-white font-weight-bold">Register Form</div>
+          <div class="card-body">
+            <form [formGroup]="reactForm" (submit)="submitRegister()" >
+              <div class="form-group">
+                <input
+                  formControlName="firstName"  type="text" class="form-control" placeholder="First Name"
+                  [class.is-invalid]='getFname().touched && getFname().invalid'
+                  [class.is-valid]="getFname().touched && getFname().valid">
+                  <div *ngIf='getFname().touched && getFname().invalid' class="text-danger">
+                    <span *ngIf='getFname().errors.required'>First Name is required</span>
+                    <span *ngIf='getFname().errors.minlength'>Minimum 4 characters</span>
+                  </div>
+                  <span *ngIf="getFname().touched && getFname().valid" class="text-success">Looks good</span>
+              </div>
+              <div class="form-group">
+              <input
+                  formControlName="lastName"  type="text" class="form-control" placeholder="Last Name"
+                  [class.is-invalid]='getLname().touched && getLname().invalid'
+                  [class.is-valid]="getLname().touched && getLname().valid">
+                  <div *ngIf='getLname().touched && getLname().invalid' class="text-danger">
+                    <span *ngIf='getLname().errors.required'>Last Name is required</span>
+                    <span *ngIf='getLname().errors.minlength'>Minimum 3 characters</span>
+                  </div>
+                  <span *ngIf="getLname().touched && getLname().valid" class="text-success">Looks good</span>
+            </div>
+              <div class="form-group">
+                <input formControlName="email" type="email" class="form-control" placeholder="Email"
+                [class.is-invalid] ='getemail().touched && getemail().invalid'
+                [class.is-valid]="getemail().touched && getemail().valid "
+                >
+                <div *ngIf='getemail().touched && getemail().invalid' class="text-danger">
+                  <span *ngIf='getemail().errors.required'>email is required</span>
+                </div>
+                <span *ngIf="getemail().touched && getemail().valid" class="text-success">Looks good</span>
+              </div>
+              <div class="form-group">
+                <input
+                  formControlName="phone"  type="number" class="form-control" placeholder="phone No"
+                  [class.is-invalid]='getPhone().touched && getPhone().invalid'
+                  [class.is-valid]="getPhone().touched && getPhone().valid">
+                  <div *ngIf='getPhone().touched && getPhone().invalid' class="text-danger">
+                    <span *ngIf='getPhone().errors.required'>phone is required</span>
+                    <span *ngIf='getPhone().errors.maxlength'>Maximum 10 characters</span>
+                  </div>
+                  <span *ngIf="getPhone().touched && getPhone().valid" class="text-success">Looks good</span>
+              </div>
+              <div class="form-group">
+                <input formControlName="password" type="password" class="form-control" placeholder="password"
+                [class.is-valid]="getpassword().touched && getpassword().valid"
+                [class.is-invalid]="getpassword().touched && getpassword().invalid">
+              </div>
+              <div *ngIf='getpassword().touched && getpassword().invalid' class="text-danger">
+                <span *ngIf='getpassword().errors.required'>Password is required</span>
+                <span *ngIf='getpassword().errors.minlength'>Maximum characters required</span>
+              </div>
+              <span *ngIf="getpassword().touched && getpassword().valid" class="text-success">Looks good</span>
+
+              <div class="form-group">
+                <input formControlName="confirmPas" type="password" class="form-control" placeholder="Confirm Password"
+                [class.is-valid]="getconfirmPas().touched && getconfirmPas().valid"
+                [class.is-invalid]="getconfirmPas().touched && getconfirmPas().invalid">
+              </div>
+              <div *ngIf='getconfirmPas().touched && getconfirmPas().invalid' class="text-danger">
+                <span *ngIf='getconfirmPas().errors.required'>Password is required</span>
+                <span *ngIf='getconfirmPas().errors.minlength'>Maximum characters required</span>
+              </div>
+              <span *ngIf="getconfirmPas().touched && getconfirmPas().valid" class="text-success">Looks good</span>
+              <div class="form-group">
+                  <select name="type" formControlName="type" class="form-control"
+                        [class.is-valid]="getType().touched && getType().valid"
+                        [class.is-invalid]="getType().touched && getType().invalid" >
+                      <option value="">select any type</option>
+                      <option value="Admin">Admin</option>
+                      <option value="User">user</option>
+                  </select>
+                  <div *ngIf="getType().touched && getType().invalid">
+                    <span *ngIf='getType().errors.required'>Type is required</span>
+                    <span *ngIf='getType().errors.minlength'>Maximum characters required</span>
+                  </div>
+                  <span *ngIf="getType().touched && getType().valid" class="text-success">Looks good</span>
+              </div>
+              <div>
+                <input type="submit" class="btn btn-sm btn-danger" value="Submit">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-bottom: 300px;"></div>
+  
